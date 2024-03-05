@@ -1,0 +1,16 @@
+{% comment %} 
+<form action="">
+	<input type="text" placeholder="Email">
+	<input type="text" placeholder="username">
+	<input type="password" placeholder="Password">
+	<input type="password" placeholder="Confirm Password">
+    <button>Register</button>
+</form> {% endcomment %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+
+    {{form.as_p}}
+    <button type="submit">Register</button>
+</form> 
+
