@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     # Custom Apps
     'core', 
+    'userauths',
 ]
 
 MIDDLEWARE = [
@@ -145,3 +146,4 @@ JAZZMIN_SETTINGS = {
     'copyright': "panda-shop.com",
 }
 
+AUTH_USER_MODEL = 'userauths.User'
