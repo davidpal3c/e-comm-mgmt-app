@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from userauths.forms import UserRegisterForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.conf import settings
+
+
 
 User = settings.AUTH_USER_MODEL
 
@@ -36,6 +38,7 @@ def login_view(request):
     if request.user.is_authenticated:           # check if user is already authenticated
         messages.warning(request, f"You are already Logged In!")
         return redirect("core:index")
+        # return render(request, "userauths/sign-in.html")
 
     if request.method == "POST":              #check if method used is POST
         email = request.POST.get("email") 
@@ -58,6 +61,17 @@ def login_view(request):
 
     context = {}
 
-    return render(request, "/userauths/sign-in.html", context)
+    return render(request, "userauths/sign-in.html", context)
+
+
+def logout_view(request):       # a string URL will be passed later on
+    logout(request)
+    messages.success(request, "You've been Logged-out.")
+    return redirect("userauths:sign-in")
+
+
+
+
+
 
 
