@@ -31,3 +31,21 @@ class Category(models.Model):
     def __str__(self):              # defines string representation of objects in database/admin 
         return self.title
     
+
+class Vendor(models.Model):
+
+    vid = models.UUIDField(unique=True, length=10, max_length=30, prefix="vendor", alphabet="abcdefgh12345")
+    
+    title = models.CharField(unique=False, max_length=100)      # Title, Heading
+    image = models.ImageField(upload_to=user_directory_path)
+    description = models.TextField(null=True, blank=True)
+    
+    address = models.CharField(max_length=100, default="123 Main Street, London, UK")  
+    contact = models.CharField(max_length=100, default="+1 (123) 456-7890") 
+    chat_resp_time = models.CharField(max_length=100, default="100") 
+    shipping_on_time = models.CharField(max_length=100, default="100") 
+    authentic_rating = models.CharField(max_length=100, default="100") 
+    days_return = models.CharField(max_length=100, default="100") 
+    warranty_period = models.CharField(max_length=100, default="100") 
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)      #if user is deleted, vendor/shop is deleted, unlike 'SET_NULL, null=True'
